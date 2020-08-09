@@ -34,3 +34,10 @@ def test_order_creation():
     assert order.symbol == "LTCBTC"
     assert order.price == Decimal("0.1")
     assert order.side == "BUY"
+
+    assert order.is_stale() is True
+    assert order.is_stale(current_time_sec=1499827319) is False
+    assert order.is_stale(current_time_sec=1499827319 + 31 * 60) is True
+
+    order.status = 'FILLED'
+    assert order.is_stale(current_time_sec=1499827319) is False
