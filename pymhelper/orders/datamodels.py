@@ -65,6 +65,13 @@ class Order(AutoConvertingField):
         """
         return bool(self.side == 'SELL')
 
+    def is_opened(self) -> bool:
+        """Checks if Order status is NEW or PARTIALLY_FILLED.
+
+        :return: bool
+        """
+        return self.status not in ('NEW', 'PARTIALLY_FILLED')
+
     def is_stale(self, current_time_sec: int = None,
                  timeout_sec: int = None) -> bool:
         """Checks if order is still open and timeout exceeds.
@@ -73,7 +80,7 @@ class Order(AutoConvertingField):
         :param timeout_sec: if None, 30 minutes for BUY and 24 hours for SELL
         :return: bool
         """
-        if self.status not in ('NEW', 'PARTIALLY_FILLED'):
+        if self.is_opened():
             return False
         if timeout_sec is None:
             if self.is_buy():

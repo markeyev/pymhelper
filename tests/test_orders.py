@@ -1,12 +1,9 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=missing-function-docstring
 
-import logging
 from decimal import Decimal
 
 from pymhelper.orders import Order
-
-logging.basicConfig(level=logging.DEBUG)
 
 
 def test_order_creation():

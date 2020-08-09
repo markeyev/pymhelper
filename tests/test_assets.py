@@ -1,12 +1,9 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=missing-function-docstring
 
-import logging
 from decimal import Decimal
 
 from pymhelper.assets import Asset
-
-logging.basicConfig(level=logging.DEBUG)
 
 
 def test_asset_creation():

@@ -6,6 +6,8 @@ from decimal import Decimal
 
 from .datamodels import Asset
 
+logger = logging.getLogger(__name__)
+
 
 class AssetBaseClass:
     """Basic implementation of Bot class with Assets.
@@ -36,8 +38,8 @@ class AssetBaseClass:
                       locked=Decimal('0'),
                       minimum=quote_asset_min))  # e.g. BUSD = $10
 
-        logging.debug('Base asset %s', self.base_asset)
-        logging.debug('Quote asset %s', self.quote_asset)
+        logger.debug('Base asset %s', self.base_asset)
+        logger.debug('Quote asset %s', self.quote_asset)
 
     @property
     def base_asset(self) -> Asset:
